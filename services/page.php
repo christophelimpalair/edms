@@ -28,41 +28,28 @@ include_once '../header.php';
             </div>
           </div>
 		<?php
-
 			/* Load Parts Report */
            get_template_part( 'tabs' , 'parts-report' );
            /* Load Service Report */
 		   get_template_part( 'tabs' , 'services-report' ); 
-
-		?>
-              
+		?>  
         </div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_parts">
-
         <?php 
         	/* Load Parts Tab */
         	get_template_part('tabs', 'parts'); 
-
         ?>
-        
         </div>
 
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_services">
-		  
         <?php
         	/* Load Services Tab */
         	get_template_part('tabs', 'services'); 
-        ?>        
-                
+        ?>              
         </div>
-		  
-		    
-			  
-		</div>
-		
+	   </div>
       </div>
-    </div>
 	
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
