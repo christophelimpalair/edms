@@ -19,7 +19,7 @@ global $edmsdb;
 
 <?php
 /**
- * Select
+ * Select parts ordered within the last 7 days
  */
 $seven_days_ago = date('Y/m/d', strtotime('-7 days'));
 
@@ -54,14 +54,21 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 	<form role="parts-order">
 	 <table class="table">
 	    <tr>
-			<td> Part Name:</td>
-			<td><span class="glyphicon glyphicon-cog"></span>
+			<td><span class="glyphicon glyphicon-cog"></span>Part Name:</td>
+			<td></span>
 			    <select class="form-control">
-					<option>Option 1</option>
-					<option>Option 2</option>
-					<option>Option 3</option>
-					<option>Option 4</option>
-					<option>Option 5</option>
+			    <?php
+			    	/**
+ 					* Select available parts
+ 					*/
+			    	$query = $edmsdb->prepare("SELECT id, part_name FROM parts");
+			    	$query->execute();
+			    	/**
+					 * Loop through parts for drop-down select menu. Value = ID, Option = Name 
+					 */
+			    	foreach ( $query->fetchAll() as $parts ) { ?>
+					<option value="<?php echo $parts["id"];?>"><?php echo $parts["part_name"]; ?></option>
+				<?php } ?>
 				</select>
 			</td>
 		</tr>
@@ -102,8 +109,8 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 	  <form role="parts-search">
 		<table class="table">
 	      <tr>
-			<td>Part Name:</td>
-			<td><span class="glyphicon glyphicon-cog"></span> 
+			<td><span class="glyphicon glyphicon-cog"></span> Part Name:</td>
+			<td>
 				<select class="form-control">
 					<option>Option 1</option>
 					<option>Option 2</option>
