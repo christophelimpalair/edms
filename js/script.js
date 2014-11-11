@@ -14,8 +14,6 @@
 		var target = "#" + $(this).data("target");
 		$(".table-responsive.reports").not(target).addClass("hidden");
 		$(target).removeClass("hidden");
-		console.log("test");
-		console.log(target);
 	});
 
 }(jQuery));
