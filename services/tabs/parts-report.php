@@ -19,11 +19,12 @@ global $edmsdb;
       <tbody>
 
 <?php
-
+$query = $edmsdb->prepare('SELECT * FROM parts');
+$query->execute();
 /**
  * Loop through array of Parts table rows and echo
  */
-foreach( $edmsdb->getPartsReport() as $partsReport ) {
+foreach( $query->fetchAll() as $partsReport ) {
 ?>
 
    <tr>

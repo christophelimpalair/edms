@@ -21,11 +21,16 @@ global $edmsdb;
     <tbody>
 
 <?php
+/**
+ * Select
+ */
+$query = $edmsdb->prepare('SELECT * FROM servicetickets');
+$query->execute();
 
 /**
  * Loop through array of ServiceTickets table rows and echo out
  */
-foreach( $edmsdb->getServiceReport() as $serviceReport )
+foreach( $query->fetchAll() as $serviceReport )
 {
 ?>
 
