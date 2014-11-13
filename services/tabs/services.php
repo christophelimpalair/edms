@@ -21,12 +21,11 @@ global $edmsdb;
 	  <tbody>
 
 	   </tbody>
-	</table>
 <?php
 /**
  * Select
  */
-$query = $edmsdb->prepare('SELECT * FROM servicetickets WHERE date_closed = NULL');
+$query = $edmsdb->prepare('SELECT * FROM servicetickets WHERE date_closed IS NULL');
 $query->execute();
 
 
@@ -50,8 +49,9 @@ foreach( $query->fetchAll() as $currentServices )
 
 <?php
 }
-
 ?>
+	</tbody>
+</table>
 <h3>Schedule a Repair or Service</h3>
 			  <form role="schedule-service">
 				  <table class="table">
