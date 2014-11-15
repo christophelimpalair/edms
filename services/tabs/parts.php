@@ -4,7 +4,6 @@
 global $edmsdb;
 
 ?>
- <h2 class="sub-header">Parts</h2>
   <h3>Parts Recently Ordered</h3> <small>(Ordered in the last 7 days)</small>
    <table class="table table-striped">
 	<thead>
@@ -112,11 +111,18 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 			<td><span class="glyphicon glyphicon-cog"></span> Part Name:</td>
 			<td>
 				<select class="form-control">
-					<option>Option 1</option>
-					<option>Option 2</option>
-					<option>Option 3</option>
-					<option>Option 4</option>
-					<option>Option 5</option>
+					<?php
+			    	/**
+ 					* Select available parts
+ 					*/
+			    	$query = $edmsdb->prepare("SELECT id, part_name FROM parts");
+			    	$query->execute();
+			    	/**
+					 * Loop through parts for drop-down select menu. Value = ID, Option = Name 
+					 */
+			    	foreach ( $query->fetchAll() as $parts ) { ?>
+					<option value="<?php echo $parts["id"];?>"><?php echo $parts["part_name"]; ?></option>
+				<?php } ?>
 				</select></td>
 		  </tr>
 		  <tr>
