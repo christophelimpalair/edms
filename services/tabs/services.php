@@ -4,7 +4,7 @@
 global $edmsdb;
 
 ?>
-<h2 class="sub-header">Repairs & Services</h2>
+
  <h3>Services in Progress</h3>
   <div class="table-responsive">
     <table class="table table-striped">
