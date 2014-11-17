@@ -4,6 +4,14 @@
 global $edmsdb;
 
 ?>
+
+<p>
+  <button type="button" class="btn btn-primary btn-lg" data-target="parts_recently_ordered">Recently Ordered</button>
+  <button type="button" class="btn btn-primary btn-lg" data-target="order_parts">Order</button>
+  <button type="button" class="btn btn-primary btn-lg" data-target="search_parts">Search</button>
+</p>
+
+<section id="parts_recently_ordered">
   <h3>Parts Recently Ordered</h3> <small>(Ordered in the last 7 days)</small>
    <table class="table table-striped">
 	<thead>
@@ -48,7 +56,9 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 
 	</tbody>
   </table>
+</section>
 
+<section id="order_parts">
   <h3>Order Parts</h3>
 	<form role="parts-order">
 	 <table class="table">
@@ -103,7 +113,9 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 		</tr>
 	 </table>
 	</form>
-			  
+</section>
+		
+<section id="search_parts">	  
 	<h3>Search Parts</h3>
 	  <form role="parts-search">
 		<table class="table">
@@ -133,4 +145,4 @@ foreach( $query->fetchAll() as $recentOrderedParts )
      	  </tr>
 		</table>
 	  </form>
-
+</section>
