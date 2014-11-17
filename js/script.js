@@ -1,5 +1,6 @@
 (function($) {
 
+	/* Parts and Services Left Tabs */
 	$("ul.nav-sidebar li").on("click", function() {
 		$("ul.nav-sidebar li").not(this).removeClass("active");
 		$(this).addClass("active");
@@ -8,6 +9,7 @@
 		$(target).removeClass("hidden");
 	});
 
+	/* Parts and Services Report Images */
 	$(".placeholders .img-responsive").on("click", function() {
 		$(".placeholders .img-responsive").not(this).removeClass("active");
 		$(this).addClass("active");
@@ -15,5 +17,7 @@
 		$(".table-responsive.reports").not(target).addClass("hidden");
 		$(target).removeClass("hidden");
 	});
+
+	/* Parts Menu Buttons */
 
 }(jQuery));
