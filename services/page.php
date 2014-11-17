@@ -37,12 +37,7 @@ include_once '../header.php';
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_parts">
      <h2 class="sub-header">Parts</h2>
-      <p>
-        <button type="button" class="btn btn-primary btn-lg">Recently Ordered</button>
-        <button type="button" class="btn btn-primary btn-lg">Order</button>
-        <button type="button" class="btn btn-primary btn-lg">Search</button>
-      </p>
-
+      
         <?php 
         	/* Load Parts Tab */
         	get_template_part('tabs', 'parts'); 
