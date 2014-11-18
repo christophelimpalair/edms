@@ -5,17 +5,12 @@ header('Content-type: application/json');
 if ( ! isset($_POST["partname"]) || ! isset($_POST["partnum"]) || ! isset($_POST["amount"]) || ! isset($_POST["inventory_cost"]) || ! isset($_POST["retail_cost"]) ) {
 	
 	/* One or more required inputs aren't set. */
-	echo json_encode(
-		array( 
-			"success" => "false",
-			"message" => "All fields are required!"
-		) );
-
-	return false;
+	exit("");
 
 } else {
 
-	require_once 'init.php';
+	/* Bootstrap EDMS and only load database */
+	require_once '../../init.php';
 
 	/* Validate values */
 	$partname = $_POST["partname"];
@@ -36,9 +31,9 @@ if ( ! isset($_POST["partname"]) || ! isset($_POST["partnum"]) || ! isset($_POST
 		/* Bind parameters and set data types */
 		$query->bindParam(":partname", $partname ,PDO::PARAM_STR );
 		$query->bindParam(":part_number", $part_number , PDO::PARAM_STR );
-		$query->bindParam(":cost_inv", $amount , PDO::PARAM_STR );
-		$query->bindParam(":cost_retail", $inventory_cost , PDO::PARAM_STR );
-		$query->bindParam(":ordered_amt", $retail_cost , PDO::PARAM_INT );
+		$query->bindParam(":cost_inv", $inventory_cost , PDO::PARAM_STR );
+		$query->bindParam(":cost_retail", $retail_cost , PDO::PARAM_STR );
+		$query->bindParam(":ordered_amt", $amount , PDO::PARAM_INT );
 		$query->bindParam(":ordered_date", $ordered_date  );
 
 		/* Execute query and check if successful */
