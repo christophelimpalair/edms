@@ -12,7 +12,7 @@ global $edmsdb;
 </p>
 
 <section id="parts_recently_ordered" class="hidden">
-  <h3>Parts Recently Ordered</h3> <small>(Ordered in the last 7 days)</small>
+  <h3>Parts Recently Ordered</h3> <small>(Orders still on the way)</small>
    <table class="table table-striped">
 	<thead>
 	  <tr>
@@ -26,12 +26,11 @@ global $edmsdb;
 
 <?php
 /**
- * Select parts ordered within the last 7 days
+ * Select parts still in transit
+ * Inventory amount = 0 and ordered amount is > 0
  */
-$seven_days_ago = date('Y/m/d', strtotime('-7 days'));
-
-$query = $edmsdb->prepare('SELECT * FROM parts WHERE ordered_date > :date');
-$query->execute( array( ":date" => $seven_days_ago ) );
+$query = $edmsdb->prepare('SELECT * FROM parts WHERE ordered_amt > 0 AND stock_amt < 1');
+$query->execute();
 
 /**
  * Loop through array of Parts table rows and echo out
@@ -45,7 +44,7 @@ foreach( $query->fetchAll() as $recentOrderedParts )
     <td><?php echo $recentOrderedParts["stock_amt"]; ?></td>
     <td><?php echo $recentOrderedParts["ordered_amt"]; ?></td>
 	<td>
-		<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-id="<?php echo $recentOrderedParts["id"]; ?>">More Details</button>
+		<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-id="<?php echo $recentOrderedParts["id"]; ?>">Received Order</button>
 	</td>
     </tr>
 

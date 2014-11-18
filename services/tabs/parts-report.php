@@ -32,7 +32,7 @@ foreach( $query->fetchAll() as $partsReport ) {
     <td><?php echo $partsReport["stock_amt"]; ?></td>
     <td><?php echo $partsReport["ordered_amt"]; ?></td>
 	<td>
-		<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-id="<?php echo $partsReport["id"]; ?>">More Details</button>
+		<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-id="<?php echo $partsReport["id"]; ?>">Order Received</button>
 	</td>
   </tr>
 
