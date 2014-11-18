@@ -71,12 +71,60 @@ $("#order_parts_btn").on("click", function(e) {
 				button.addClass("btn-success");
 				error.removeClass("btn-danger");
 				error.addClass("btn-sucess");
+				error.html("Successfully ordered!");
 			}
 		},
 		error: function() {
 			// get better error handling
 			error.html("Error with ajax call");
 			error.addClass("btn-danger");
+			button.addClass("btn-danger");
+		},
+		timeout: 10000
+	});
+  } else {
+  	error.html("All fields are required!");
+  	error.addClass("btn-danger");
+  	button.addClass("btn-danger");
+  	error.removeClass("hidden");
+  }
+});
+
+// Schedule Service
+$("#schedule_service_btn").on("click", function(e) {
+  e.preventDefault();
+  var button = $(this);
+  var error = button.next("p");
+  var advisor = $(".form_schedule_service .schedule_service_advisor_id").val();
+  var tech = $(".form_schedule_service .schedule_service_tech_id").val();
+  var reason = $(".form_schedule_service .schedule_service_reason").val();
+  var vin = $(".form_schedule_service .schedule_service_vin").val();
+  if ( advisor.length != 0 && tech.length !=0 && reason.length !=0 && vin.length != 0 )
+  {
+	$.ajax({
+		type: "POST",
+		url: "/edms/services/ajax/schedule_service.php",
+		data: { advisor: advisor , tech: tech , reason: reason , vin: vin},
+		async: false,
+		success: function(result) {
+			if (result.success === "false") {
+				button.addClass("btn-danger");
+				error.html(result.message);
+				error.addClass("btn-danger");
+				error.removeClass("hidden");
+			} else {
+				button.removeClass("btn-danger");
+				button.addClass("btn-success");
+				error.removeClass("btn-danger");
+				error.addClass("btn-sucess");
+				error.html(result.message);
+			}
+		},
+		error: function() {
+			// get better error handling
+			error.html("Error with ajax call");
+			error.addClass("btn-danger");
+			error.removeClass("hidden");
 			button.addClass("btn-danger");
 		},
 		timeout: 10000
