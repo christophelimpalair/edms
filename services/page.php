@@ -27,37 +27,33 @@ include_once '../header.php';
               <span class="text-muted">View details for repairs and services</span>
             </div>
           </div>
-		<?php
-			/* Load Parts Report */
-           get_template_part( 'tabs' , 'parts-report' );
-           /* Load Service Report */
-		   get_template_part( 'tabs' , 'services-report' ); 
-		?>  
+    		<?php
+    			/* Load Parts Report */
+          get_template_part( 'tabs' , 'parts-report' );
+          /* Load Service Report */
+    		  get_template_part( 'tabs' , 'services-report' ); 
+    		?>  
         </div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_parts">
      <h2 class="sub-header">Parts</h2>
       
-        <?php 
-        	/* Load Parts Tab */
-        	get_template_part('tabs', 'parts'); 
-        ?>
-        </div>
+      <?php 
+      /* Load Parts Tab */
+      get_template_part('tabs', 'parts'); 
+      ?>
+    </div>
 
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_services">
      <h2 class="sub-header">Repairs & Services</h2>
-      <p>
-        <button type="button" class="btn btn-primary btn-lg">In Progress</button>
-        <button type="button" class="btn btn-primary btn-lg">Schedule</button>
-        <button type="button" class="btn btn-primary btn-lg">Search</button>
-      </p>
-        <?php
-        	/* Load Services Tab */
-        	get_template_part('tabs', 'services'); 
-        ?>              
-        </div>
-	   </div>
-      </div>
+      
+      <?php
+      /* Load Services Tab */
+      get_template_part('tabs', 'services'); 
+      ?>              
+    </div>
+	 </div>
+  </div>
 	
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -68,7 +64,7 @@ include_once '../header.php';
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        ...
+        <!-- Info goes here -->...
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
