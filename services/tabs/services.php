@@ -62,7 +62,7 @@ foreach( $query->fetchAll() as $currentServices )
 
 <section id="schedule_service" class="hidden">
   <h3>Schedule a Repair or Service</h3>
-	<form role="schedule-service">
+	<form role="schedule-service" class="form_schedule_service">
 	  <table class="table">
 		<tr>
 		  <td><span class="glyphicon glyphicon-cog"></span> Advisor Name:</td>
@@ -83,7 +83,7 @@ foreach( $query->fetchAll() as $currentServices )
 			{
 			?>
 
-			  <option value="<?php echo $advisor["id"];?>"><?php echo $advisor["fname"] . " " . $advisor["lname"]; ?></option>
+			  <option class="schedule_service_advisor_id" value="<?php echo $advisor["id"];?>"><?php echo $advisor["fname"] . " " . $advisor["lname"]; ?></option>
 			    
 			<?php
 			}
@@ -110,7 +110,7 @@ foreach( $query->fetchAll() as $currentServices )
 			{
 			?>
 
-			  <option value="<?php echo $technician["id"];?>"><?php echo $technician["fname"] . " " . $technician["lname"]; ?></option>
+			  <option class="schedule_service_tech_id" value="<?php echo $technician["id"];?>"><?php echo $technician["fname"] . " " . $technician["lname"]; ?></option>
 			    
 			<?php
 			}
@@ -122,7 +122,7 @@ foreach( $query->fetchAll() as $currentServices )
 		  <td><span class="glyphicon glyphicon-plus"></span> Reason: <small>(limit: 100 characters)</small></td>
 		  <td>
 			<div class="form-group">
-				<textarea class="form-control" rows="3" maxlength="100" placeholder="Enter reason(s) for service"></textarea>
+				<textarea class="form-control schedule_service_reason" rows="3" maxlength="100" placeholder="Enter reason(s) for service"></textarea>
 			</div>
 		  </td>
 		</tr>
@@ -130,14 +130,15 @@ foreach( $query->fetchAll() as $currentServices )
 		  <td><span class="glyphicon glyphicon-usd"></span> VIN:</td>
 		  <td>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Example: LJCPCBLCX11000237">
+				<input type="text" class="form-control schedule_service_vin" placeholder="Example: LJCPCBLCX11000237">
 			</div>
 		  </td>
 		</tr>
 		<tr>
 		  <td></td>
 		  <td>
-			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Schedule</button>
+			<button type="submit" class="btn btn-default" id="schedule_service_btn"><span class="glyphicon glyphicon-ok"></span> Schedule</button>
+			<p class="error hidden"></p>
 		  </td>
 		</tr>
 	 </table>
