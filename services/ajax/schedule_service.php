@@ -12,7 +12,7 @@ if ( ! isset($_POST["advisor"]) && ! isset($_POST["tech"]) && ! isset($_POST["re
 	/* Bootstrap EDMS and only load database */
 	require_once '../../init.php';
 
-	/* Validate values */
+	/* Store values */
 	$advisor = $_POST["advisor"];
 	$tech = $_POST["tech"];
 	$reason = $_POST["reason"];
@@ -44,7 +44,7 @@ if ( ! isset($_POST["advisor"]) && ! isset($_POST["tech"]) && ! isset($_POST["re
 			 */
 			$result = array( 
 				"success" => "true",
-				"data" => "Successfully scheduled service!" 
+				"message" => "Successfully scheduled service!" 
 			);
 
 			echo json_encode($result);
