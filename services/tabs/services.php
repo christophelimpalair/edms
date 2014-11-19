@@ -72,7 +72,7 @@ foreach( $query->fetchAll() as $currentServices )
 			/**
 			 * Select
 			 */
-			$query = $edmsdb->prepare('SELECT * FROM employee WHERE department = "advisor"');
+			$query = $edmsdb->prepare('SELECT * FROM employee WHERE title = "advisor"');
 			$query->execute();
 
 
@@ -99,7 +99,7 @@ foreach( $query->fetchAll() as $currentServices )
 			/**
 			 * Select
 			 */
-			$query = $edmsdb->prepare('SELECT * FROM employee WHERE department = "technician"');
+			$query = $edmsdb->prepare('SELECT * FROM employee WHERE title = "technician"');
 			$query->execute();
 
 
