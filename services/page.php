@@ -14,7 +14,7 @@ include_once '../header.php';
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main " id="tech_report">
-          <h2 class="sub-header">Reports</h2>
+         <h2 class="sub-header">Reports</h2>
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
               <img data-src="holder.js/200x200/auto/sky/text:Click to View" class="img-responsive" alt="Generic placeholder thumbnail" data-target="report_parts">
@@ -27,20 +27,21 @@ include_once '../header.php';
               <span class="text-muted">View details for repairs and services</span>
             </div>
           </div>
-    		<?php
-    			/* Load Parts Report */
-          get_template_part( 'tabs' , 'parts-report' );
-          /* Load Service Report */
-    		  get_template_part( 'tabs' , 'services-report' ); 
-    		?>  
+        <?php
+        /* Load Parts Report */
+        get_template_part( 'parts-report' , 'tabs' );
+        /* Load Service Report */
+        get_template_part( 'services-report' , 'tabs' ); 
+        ?>  
         </div>
+
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_parts">
      <h2 class="sub-header">Parts</h2>
       
       <?php 
       /* Load Parts Tab */
-      get_template_part('tabs', 'parts'); 
+      get_template_part('parts', 'tabs'); 
       ?>
     </div>
 
@@ -49,7 +50,7 @@ include_once '../header.php';
       
       <?php
       /* Load Services Tab */
-      get_template_part('tabs', 'services'); 
+      get_template_part('services', 'tabs' ); 
       ?>              
     </div>
 	 </div>
