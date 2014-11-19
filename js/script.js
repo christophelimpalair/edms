@@ -41,6 +41,8 @@ $("button.menu").on("click", function() {
  * Ajax Calls
  */
 
+// TODO: DRY -- Use functions
+
 /* Order Parts */
 $("#order_parts_btn").on("click", function(e) {
   e.preventDefault();
@@ -69,9 +71,9 @@ $("#order_parts_btn").on("click", function(e) {
 				console.log("Successful ajax call: " + result.message);
 				button.removeClass("btn-danger");
 				button.addClass("btn-success");
-				error.removeClass("btn-danger");
-				error.addClass("btn-sucess");
 				error.html("Successfully ordered!");
+				error.addClass("btn-sucess");
+				error.removeClass("hidden btn-danger");
 			}
 		},
 		error: function() {
@@ -115,9 +117,54 @@ $("#schedule_service_btn").on("click", function(e) {
 			} else {
 				button.removeClass("btn-danger");
 				button.addClass("btn-success");
-				error.removeClass("btn-danger");
-				error.addClass("btn-sucess");
 				error.html(result.message);
+				error.addClass("btn-sucess");
+				error.removeClass("hidden btn-danger");
+			}
+		},
+		error: function() {
+			// get better error handling
+			error.html("Error with ajax call");
+			error.addClass("btn-danger");
+			error.removeClass("hidden");
+			button.addClass("btn-danger");
+		},
+		timeout: 10000
+	});
+  } else {
+  	error.html("All fields are required!");
+  	error.addClass("btn-danger");
+  	button.addClass("btn-danger");
+  	error.removeClass("hidden");
+  }
+});
+
+// Schedule Service
+$("#search_parts_btn").on("click", function(e) {
+  e.preventDefault();
+  var button = $(this);
+  var error = button.next("p");
+  var param = $(".select_part option:selected").val();
+  console.log(param);
+  if ( param.length != 0 )
+  {
+	$.ajax({
+		type: "POST",
+		url: "/edms/services/ajax/search_parts.php",
+		data: { value: param },
+		async: false,
+		success: function(result) {
+			if (result.success === "false") {
+				button.addClass("btn-danger");
+				error.html(result.message);
+				error.addClass("btn-danger");
+				error.removeClass("hidden");
+			} else {
+				button.removeClass("btn-danger");
+				button.addClass("btn-success");
+				error.html(result.parts.part_name);
+				error.addClass("btn-sucess");
+				error.removeClass("hidden btn-danger");
 			}
 		},
 		error: function() {
