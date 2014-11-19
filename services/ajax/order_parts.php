@@ -12,7 +12,7 @@ if ( ! isset($_POST["partname"]) || ! isset($_POST["partnum"]) || ! isset($_POST
 	/* Bootstrap EDMS and only load database */
 	require_once '../../init.php';
 
-	/* Validate values */
+	/* Store values */
 	$partname = $_POST["partname"];
 	$part_number = $_POST["partnum"];
 	$amount = $_POST["amount"];
@@ -46,7 +46,7 @@ if ( ! isset($_POST["partname"]) || ! isset($_POST["partnum"]) || ! isset($_POST
 			 */
 			$result = array( 
 				"success" => "true",
-				"data" => "Successfully ordered part!" 
+				"message" => "Successfully ordered part!" 
 			);
 
 			echo json_encode($result);
