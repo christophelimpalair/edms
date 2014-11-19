@@ -113,14 +113,15 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 	</form>
 </section>
 		
-<section id="search_parts" class="hidden">	  
+<section id="search_parts" class="hidden form_search_parts">	  
 	<h3>Search Parts</h3>
 	  <form role="parts-search">
 		<table class="table">
 	      <tr>
 			<td><span class="glyphicon glyphicon-cog"></span> Part Name:</td>
 			<td>
-				<select class="form-control">
+				<select class="form-control select_part">
+					<option value="all">Search all</option>
 					<?php
 			    	/**
  					* Select available parts
@@ -138,7 +139,8 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 		  <tr>
 			<td></td>
 			<td>
-				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Find</button>
+				<button type="submit" class="btn btn-default" id="search_parts_btn"><span class="glyphicon glyphicon-search"></span> Find</button>
+				<p class="error hidden"></p>
 			</td>
      	  </tr>
 		</table>
