@@ -35,7 +35,7 @@ function is_page( $page = '' ) {
 	return false;
 }
 
-function get_template_part( $path = null, $name = '', $ext = ".php" ) {
+function get_template_part( $name = '', $path = null,  $ext = ".php" ) {
 	$name = (string) $name;
 
 	$file = $path . '/' . $name . $ext;
@@ -47,7 +47,7 @@ function get_template_part( $path = null, $name = '', $ext = ".php" ) {
 }
 
 function get_navbar() {
-	get_template_part( "../functions" , "navbar" );
+	get_template_part( "navbar" , "../functions" );
 }
 
 /* Don't load file if global database variable is already set */
