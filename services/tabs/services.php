@@ -29,7 +29,7 @@ global $edmsdb;
 	  </tbody>
 <?php
 /**
- * Select
+ * Select services that are still in progress
  */
 $query = $edmsdb->prepare('SELECT * FROM servicetickets WHERE date_closed IS NULL');
 $query->execute();
