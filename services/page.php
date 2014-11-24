@@ -1,18 +1,51 @@
 <?php
 include_once '../header.php';
+
+// Reset at every page load
+$page = null;
+
+/* Page controls */
+if ( isset($_GET["p"]) && $_GET["p"] === "reports" ) : 
+
+  // Load Reports page
+  $page = "reports";
+
+elseif ( isset($_GET["p"]) && $_GET["p"] === "parts" ) :
+  // Load Parts page
+  $page = "parts";
+
+elseif ( isset($_GET["p"]) && $_GET["p"] === "services" ) : 
+
+  // Load services page
+  $page = "services";
+
+else :
+  // URL not properly set
+?>
+
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main " id="nothing_to_show">
+    <?php echo "Nothing to show at this URL"; ?>
+  </div>
+
+<?php
+
+endif; 
+
 ?>
 
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active" data-target="tech_report"><a href="#">Reports</a></li>
+            <li class="<?php if ( $page === "reports" ) echo 'active'; ?>" data-target="tech_report"><a href="?p=reports">Reports</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li data-target="tech_parts"><a href="#" >Parts</a></li>
-            <li data-target="tech_services"><a href="#" >Repairs & Services</a></li>
+            <li class="<?php if ( $page === "parts" ) echo 'active'; ?>" data-target="tech_parts"><a href="?p=parts&t=recent" >Parts</a></li>
+            <li class="<?php if ( $page === "services" ) echo 'active'; ?>" data-target="tech_services"><a href="?p=services&t=progress" >Repairs & Services</a></li>
           </ul>
         </div>
+        
+        <?php if ( $page === "reports" ) : ?>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main " id="tech_report">
          <h2 class="sub-header">Reports</h2>
           <div class="row placeholders">
@@ -34,9 +67,10 @@ include_once '../header.php';
         get_template_part( 'services-report' , 'tabs' ); 
         ?>  
         </div>
+        <?php endif; ?>
 
-		
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_parts">
+    <?php if ( $page === "parts" ) : ?>    
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" id="tech_parts">
      <h2 class="sub-header">Parts</h2>
       
       <?php 
@@ -44,8 +78,10 @@ include_once '../header.php';
       get_template_part('parts', 'tabs'); 
       ?>
     </div>
-
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 hidden" id="tech_services">
+    <?php endif; ?>
+  
+    <?php if ( $page === "services" ) : ?>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" id="tech_services">
      <h2 class="sub-header">Repairs & Services</h2>
       
       <?php
@@ -53,6 +89,8 @@ include_once '../header.php';
       get_template_part('services', 'tabs' ); 
       ?>              
     </div>
+    <?php endif; ?>
+
 	 </div>
   </div>
 	
