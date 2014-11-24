@@ -3,14 +3,31 @@
 /* Get access to database */
 global $edmsdb;
 
+  // Check which tab to load
+if ( isset($_GET["t"]) ) {
+
+	switch( $_GET["t"] ) {
+	  case "progress":
+	      $tab = "progress";
+	      break;
+	  case "schedule":
+	      $tab = "schedule";
+	      break;
+	  case "search":
+	      $tab = "search";
+	      break;
+	}
+
+}
 ?>
 <p>
-  <button type="button" class="btn btn-primary btn-lg menu" data-target="services_in_progress">In Progress</button>
-  <button type="button" class="btn btn-primary btn-lg menu" data-target="schedule_service">Schedule</button>
-  <button type="button" class="btn btn-primary btn-lg menu" data-target="search_service">Search</button>
+  <a href="?p=services&t=progress"><button type="button" class="btn btn-primary btn-lg menu <?php if ( $tab === "progress" ) echo 'active'; ?>">In Progress</button></a>
+  <a href="?p=services&t=schedule"><button type="button" class="btn btn-primary btn-lg menu <?php if ( $tab === "schedule" ) echo 'active'; ?>">Schedule</button></a>
+  <a href="?p=services&t=search"><button type="button" class="btn btn-primary btn-lg menu <?php if ( $tab === "search" ) echo 'active' ?>">Search</button></a>
 </p>
 
-<section id="services_in_progress" class="hidden">
+<?php if ( $tab === "progress" ) : ?>
+<section id="services_in_progress">
  <h3>Services in Progress</h3>
   <div class="table-responsive">
     <table class="table table-striped">
@@ -59,8 +76,10 @@ foreach( $query->fetchAll() as $currentServices )
 	  </tbody>
 	</table>
 </section>
+<?php endif; ?>
 
-<section id="schedule_service" class="hidden">
+<?php if ( $tab === "schedule" ) : ?>
+<section id="schedule_service">
   <h3>Schedule a Repair or Service</h3>
 	<form role="schedule-service" class="form_schedule_service">
 	  <table class="table">
@@ -144,8 +163,10 @@ foreach( $query->fetchAll() as $currentServices )
 	 </table>
 	</form>
 </section>
+<?php endif; ?>
 
-<section id="search_service" class="hidden">		
+<?php if ( $tab === "search" ) : ?>
+<section id="search_service">		
     <h3>Search Repairs & Services</h3>
 	  <h5>Only one of these fields is necessary</h5>
 		<form role="parts-order">
@@ -199,3 +220,4 @@ foreach( $query->fetchAll() as $currentServices )
 		</table>
 	</form>
 </section>
+<?php endif; ?>

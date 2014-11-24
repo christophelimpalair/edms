@@ -3,15 +3,35 @@
 /* Get access to database */
 global $edmsdb;
 
+// Check which tab to load
+  if ( isset($_GET["t"]) ) {
+
+    switch( $_GET["t"] ) {
+      case "recent":
+          $tab = "recent";
+          break;
+      case "order":
+          $tab = "order";
+          break;
+      case "search":
+          $tab = "search";
+          break;
+    }
+
+  } else {
+  	echo "URL is not properly set";
+  	return;
+  }
 ?>
 
 <p>
-  <button type="button" class="btn btn-primary btn-lg menu" data-target="parts_recently_ordered">Recently Ordered</button>
-  <button type="button" class="btn btn-primary btn-lg menu" data-target="order_parts">Order</button>
-  <button type="button" class="btn btn-primary btn-lg menu" data-target="search_parts">Search</button>
+  <a href="?p=parts&t=recent"><button type="button" class="btn btn-primary btn-lg menu <?php if ( $tab === "recent" ) echo 'active'; ?>">Recently Ordered</button></a>
+  <a href="?p=parts&t=order"><button type="button" class="btn btn-primary btn-lg menu <?php if ( $tab === "order" ) echo 'active'; ?>">Order</button></a>
+  <a href="?p=parts&t=search"><button type="button" class="btn btn-primary btn-lg menu <?php if ( $tab === "search" ) echo 'active'; ?>">Search</button></a>
 </p>
 
-<section id="parts_recently_ordered" class="hidden">
+<?php if ( $tab === "recent" ) : ?>
+<section id="parts_recently_ordered">
   <h3>Parts Recently Ordered</h3> <small>(Orders still on the way)</small>
    <table class="table table-striped">
 	<thead>
@@ -56,8 +76,10 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 	</tbody>
   </table>
 </section>
+<?php endif; ?>
 
-<section id="order_parts" class="hidden">
+<?php if ( $tab === "order" ) : ?>
+<section id="order_parts">
   <h3>Order Parts</h3>
 	<form role="parts-order" class="form_parts_order">
 	 <table class="table">
@@ -112,8 +134,10 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 	 </table>
 	</form>
 </section>
-		
-<section id="search_parts" class="hidden form_search_parts">	  
+<?php endif; ?>
+
+<?php if ( $tab === "search" ) : ?>
+<section id="search_parts" class="form_search_parts">	  
 	<h3>Search Parts</h3>
 	  <form role="parts-search">
 		<table class="table">
@@ -146,3 +170,4 @@ foreach( $query->fetchAll() as $recentOrderedParts )
 		</table>
 	  </form>
 </section>
+<?php endif; ?>
